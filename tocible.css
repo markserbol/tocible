@@ -39,10 +39,9 @@
 .tocible_header span.toc_open {
 	-moz-transform:rotate(-90deg);
 	-webkit-transform:rotate(-90deg);
-	-ms-transform:rotate(-90deg);
 	-o-transform:rotate(-90deg);
+	-ms-transform:rotate(-90deg);
 	transform:rotate(-90deg);
-	
 }
 
 .tocible ul {
@@ -56,6 +55,7 @@
 	height:35px;
 	line-height:35px;
 	cursor:pointer;
+	white-space:nowrap;
 }
 
 .tocible li a {
