@@ -1,5 +1,5 @@
 /*
- * jquery.tocible.js v1, Tocible
+ * jquery.tocible.js v 1.0.2, Tocible
  *
  * Copyright 2014 Mark Serbol.   
  * Use, reproduction, distribution, and modification of this code is subject to the terms and 
@@ -27,10 +27,11 @@
     return this.each(function(){
 	  var wrapper = $(this), nav, heading, subheading, left; 
 	  
-	  nav = wrapper.find(opts.navigation);	
-	  nav.addClass('tocible').html('<ul/>');
+	  nav = wrapper.find(opts.navigation);
 	  
 	  left = nav.offset().left;
+	  
+	  nav.addClass('tocible').html('<ul/>');
 	  
 	  wrapper.append(nav).css({'position':'relative'});
 	  
