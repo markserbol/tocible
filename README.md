@@ -1,16 +1,17 @@
 # Tocible
-A lightweight jQuery plugin for creating table of contents sub-navigation menu.
+A lightweight jQuery plugin for creating table of contents navigation menu.
 
-[![Tocible](http://i.imgur.com/tokBwIM.png "Tocible")](https://github.com/markserbol/tocible)
+[![Tocible](http://i.imgur.com/yyFZdiq.png "Tocible")](https://github.com/markserbol/tocible)
 
 ## Demo
 [View demo](http://markserbol.github.io/tocible/)
 
 
 ## Basic Usage
-Tocible creates a table of contents sub-navigation menu that animates anchoring on click and follows the user scrolling.
+Tocible creates a table of contents navigation menu that animates anchoring on click and follows the user scrolling.
 
 Include the latest jQuery library together with `tocible.css` and `jquery.tocible.js` in your document's `<head>` and call `.tocible()`.
+
 ### Markup
 ````html
 <div id="container">
