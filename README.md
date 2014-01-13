@@ -30,18 +30,30 @@ Include the latest jQuery library together with `tocible.css` and `jquery.tocibl
 ### JavaScript 
 ````javascript
 $('#container').tocible({
-    heading: 'h2', //required, selector, the first level heading
-    subheading: 'h3', //required, selector, the second level heading
-    navigation: 'nav', //required, selector, navigation list container
-    title: 'h3', //optional, selector or string, title of the navigation
-    hash: false, //optional, boolean, setting true will enable URL hashing on click
-    offset: 50, //optional, number, top spacing/margin for the navigation
-    speed: 500 //optional, number or string ('slow' & 'fast'), animation speed when anchoring
+    heading: 'h2', //selector, the first level heading
+    subheading: 'h3', //selector, the second level heading
+    navigation: 'nav', //selector, navigation list container
+    title: '', //selector or string, title of the navigation
+    hash: false, //boolean, setting true will enable URL hashing on click
+    offset: 50, //number, top spacing/margin for the navigation
+    speed: 800, //number or string ('slow' & 'fast'), animation speed when anchoring
+    collapsible: true //boolean, auto collapsing sub level heading
 });
 ````
 
 ## Compatibility
 Tested on modern browsers – Chrome, Firefox, Safari, also IE.
+
+## Changelog
+- 	v1.1.0 (13 Jan 2014)
+
+	Add option `collapsible`, for collapsing subheading list
+
+	Modify option defaults
+
+- 	v1.0.2 (10 Jan 2014)
+
+	Initial release
 
 ## License
 Tocible is under [MIT License](http://opensource.org/licenses/MIT)
