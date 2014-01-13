@@ -1,0 +1,384 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Tocible by Mark Serbol</title>
+  <meta name="viewport" content="initial-scale=1">
+  <meta name="description" content="Tocible, a lightweight table of contents navigation menu" />
+  <meta name="author" content="Mark Serbol" />
+  <meta name="designer" content="Mark Serbol" />
+  <meta property="og:title" content="Tocible — a lightweight table of contents navigation menu" />
+  <meta property="og:description" content="Tocible, a lightweight table of contents navigation menu that animates anchoring." />
+  <meta property="og:image" content="http://i.imgur.com/FwqrEl7.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://markserbol.github.io/tocible/" />
+  <meta property="og:site_name" content="Tocible by Mark Serbol" />
+  
+  <style>
+  * {
+      margin:0;
+      padding:0;
+  }
+  body, html {
+      background:#999EA8;
+      font-family:'Myriad Pro', Arial, Helvetica, sans-serif;
+  }
+  header {
+      background:#525761;
+      height:250px;
+      width:100%;
+      text-align:center;
+      color:#FFF;
+      font-size:25px;
+      position:fixed;
+      top:0;
+      left:0;
+      text-shadow:0 1px 4px rgba(0, 0, 0, 0.6);
+  }
+  header h1 {
+      font-family:"Courier New", Courier, monospace;
+      margin-top:50px;
+  }
+  header p {
+      color:#BAC9E7;
+  }
+  header #dl-github {
+      height:60px;
+	  width:200px;
+	  margin:0 auto;
+	  line-height:60px;
+      padding:0 20px;
+      margin-top:20px;
+      background:#7A8498;
+      border:none;
+      border-radius:6px;
+      font-size:20px;
+      box-shadow:0 0 6px 1px rgba(0, 0, 0, 0.3);
+      cursor:pointer;
+      color:#FFF;
+      text-shadow:0 1px 2px rgba(0, 0, 0, 0.6);
+      display:block;
+	  text-decoration:none;
+  }
+  header #dl-github:hover {
+      background:#62C8BF;
+  }
+  #section_wrapper {
+      background:#FAFAFA;
+      padding:20px 0;
+      box-shadow:0 0 0 10px rgba(0, 0, 0, 0.2);
+      margin-top:250px;
+      font-size:16px;
+      line-height:26px;
+      position:relative;
+      overflow:auto;
+  }
+  #section_wrapper article {
+      width:920px;
+      overflow:hidden;
+      margin-left:310px;
+  }
+  #section_wrapper h2 {
+      font-size:30px;
+      font-weight:normal;
+      margin-top:12px;
+      margin:28px 0 10px 0;
+  }
+  #section_wrapper h3 {
+      font-size:22px;
+      margin:15px 0 10px 0;
+      font-weight:normal;
+  }
+  #tocible {
+      background:#CCC;
+      position:absolute;
+      left:120px;	
+			width:170px;
+  }
+  footer {
+      height:600px;
+      width:100%;
+      background:#999EA8;
+      position:absolute;
+      color:#FFF;
+      font-size:18px;
+      box-shadow:0px 1px rgba(255, 255, 255, 0.1) inset;
+      left:0;
+      z-index:2;
+  }
+  footer #details {
+      overflow:auto;
+  }
+  #details > div {
+      position:absolute;
+      display:none;
+      font-family:'Calibri', sans-serif;
+      color:#FFF;
+      font-weight:normal;
+      width:100%;
+      text-align:center;
+  }
+  #details code {
+      font-size:16px;
+      font-family:"Courier New",monospace, serif;
+      background:rgba(54, 59, 64, 0.6);
+      padding:1px 12px;
+      border-radius:4px;
+  }
+  #details pre {
+      background:rgba(54, 59, 64, 0.6);
+      padding:0 20px;
+      border-radius:4px;
+      text-align:left;
+  }
+  #details pre code {
+      background:none;
+  }
+  #usage > p {
+      margin-top:10px;
+      padding:0 100px;
+  }
+  #usage div {
+      display:inline-block;
+      vertical-align:top;
+  }
+  #usage .html {
+      margin:10px;
+      width:550px;
+  }
+  #usage .html p {
+      margin:5px;
+  }
+  #usage .script {
+      margin:10px;
+      width:350px;
+  }
+  #usage .script p {
+      margin:5px;
+  }
+  #options div {
+      width:1150px;
+      margin:20px auto;
+      text-align:left;
+  }
+  footer menu {
+      height:50px;
+      background:#363B40;
+      width:100%;
+      text-align:center;
+      line-height:50px;
+      color:#8B9198;
+      font-size:20px;
+  }
+  footer menu li {
+      display:inline;
+      padding:0 15px;
+  }
+  footer menu li a {
+      text-decoration:none;
+      color:inherit;
+      cursor:pointer;
+  }
+  footer menu li a:hover {
+      color:#BCBFC2;
+  }
+  footer menu li a.open {
+      color:#FFF;
+      border-bottom:2px solid #FFF;
+  }
+  label:hover {
+      cursor:pointer;
+      text-decoration:underline;
+  }
+  
+  </style>
+  
+  <link rel="stylesheet" href="tocible.css" />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="jquery.tocible.js"></script>
+</head>
+
+<body>
+  <header>
+      <a href="https://github.com/markserbol/tocible/fork"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+      <h1>jQuery Tocible</h1>
+      <p>A lightweight table of contents navigation... Scroll down to see it in action!</p>
+      <a id="dl-github" href="https://github.com/markserbol/tocible">Download on GitHub</a>
+  </header>
+  
+  <div id="section_wrapper">
+      <article>
+          <h2>Heading 1</h2>
+          <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget neque libero. Aenean dolor turpis, viverra placerat tristique eget, venenatis quis sapien. Suspendisse ut sem vel ligula fringilla aliquam eu ut sem. Maecenas aliquet nisl at dolor auctor, sit amet convallis velit tempor. In ut nulla non lorem placerat laoreet eu vitae ligula. Pellentesque eleifend, quam in feugiat vestibulum, libero tellus faucibus est, vitae porta nibh ipsum eu tellus. Fusce auctor eros nec odio euismod consequat. Donec dictum sodales est, eget vestibulum massa gravida sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed ut purus at augue porttitor consectetur. Curabitur in lorem id lorem fringilla sodales quis sed dolor. Curabitur a blandit nunc.
+          </p>
+          <h3>Subheading 1.1</h3>
+          <p>
+      Pellentesque vel enim ege purus cursus commodo. Morbi eget iaculis justo, vitae facilisis justo. Sed cursus, orci vel sodales tincidunt, odio neque gravida lectus, sed ullamcorper turpis ante sit amet arcu. Proin sagittis diam eget nulla consectetur imperdiet. Aliquam lorem massa, feugiat vitae ante a, lobortis pellentesque eros. Sed quis iaculis tellus, sed molestie neque. Quisque lobortis nisi diam, in congue ante tempor nec. Vivamus adipiscing metus at tincidunt cursus. Cras scelerisque sit amet magna in vulputate. Vestibulum luctus venenatis dui, sed consectetur nisi pretium a. Mauris tristique, libero a vulputate porta, ligula turpis convallis dolor, nec rutrum quam mauris vitae dui. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris convallis pellentesque euismod. Phasellus convallis sem dapibus, placerat lorem non, imperdiet est. Integer euismod, augue sit amet pellentesque vestibulum, sapien nibh venenatis tortor, non facilisis arcu elit eget risus.
+          </p>
+          <h3>Subheading 1.2</h3>
+          <p>
+      Nulla tempor metus nec felis hendrerit, id imperdiet odio accumsan. Sed mollis erat a venenatis mattis. Fusce molestie consectetur tortor posuere consequat. Integer mattis est dolor, dignissim malesuada mauris tempus sit amet. Integer at nunc ut leo lacinia ultricies sit amet vitae sem. Ut blandit dapibus aliquam. Duis imperdiet, odio sit amet tempus bibendum, purus libero mattis risus, in aliquam felis dolor in urna.
+          </p>
+          <h2 id="heading2">Heading 2</h2>
+          <p>
+      Nunc posuere tempor dui, sed vestibulum mauris accumsan ac. Nulla facilisi. Vestibulum varius vestibulum justo ac eleifend. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus sollicitudin magna purus, blandit posuere nisl porta eget. Pellentesque hendrerit tellus id neque consectetur tristique. Mauris eget pulvinar turpis. Vestibulum at tortor dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis mi tellus, rhoncus id arcu et, gravida rhoncus leo. Sed semper a sem id facilisis. Phasellus in sem vitae nibh sollicitudin adipiscing. Donec vel gravida urna, sit amet accumsan dolor. Integer ullamcorper blandit nunc. Donec hendrerit velit elit, sed faucibus mauris commodo eget. Nunc in purus molestie, cursus massa id, hendrerit magna.
+          </p>
+          <h3>Subheading 2.1</h3>
+          <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget neque libero. Aenean dolor turpis, viverra placerat tristique eget, venenatis quis sapien. Suspendisse ut sem vel ligula fringilla aliquam eu ut sem. Maecenas aliquet nisl at dolor auctor, sit amet convallis velit tempor. In ut nulla non lorem placerat laoreet eu vitae ligula. Pellentesque eleifend, quam in feugiat vestibulum, libero tellus faucibus est, vitae porta nibh ipsum eu tellus. Fusce auctor eros nec odio euismod consequat. Donec dictum sodales est, eget vestibulum massa gravida sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed ut purus at augue porttitor consectetur. Curabitur in lorem id lorem fringilla sodales quis sed dolor. Curabitur a blandit nunc.
+          </p>
+          <h3>Subheading 2.2</h3>
+          <p>
+      Pellentesque vel enim eget purus cursus commodo. Morbi eget iaculis justo, vitae facilisis justo. Sed cursus, orci vel sodales tincidunt, odio neque gravida lectus, sed ullamcorper turpis ante sit amet arcu. Proin sagittis diam eget nulla consectetur imperdiet. Aliquam lorem massa, feugiat vitae ante a, lobortis pellentesque eros. Sed quis iaculis tellus, sed molestie neque. Quisque lobortis nisi diam, in congue ante tempor nec. Vivamus adipiscing metus at tincidunt cursus. Cras scelerisque sit amet magna in vulputate. Vestibulum luctus venenatis dui, sed consectetur nisi pretium a. Mauris tristique, libero a vulputate porta, ligula turpis convallis dolor, nec rutrum quam mauris vitae dui. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris convallis pellentesque euismod. Phasellus convallis sem dapibus, placerat lorem non, imperdiet est. Integer euismod, augue sit amet pellentesque vestibulum, sapien nibh venenatis tortor, non facilisis arcu elit eget risus.
+          </p>
+          <h3>Subheading 2.3</h3>
+          <p>
+      Nulla tempor metus nec felis hendrerit, id imperdiet odio accumsan. Sed mollis erat a venenatis mattis. Fusce molestie consectetur tortor posuere consequat. Integer mattis est dolor, dignissim malesuada mauris tempus sit amet. Integer at nunc ut leo lacinia ultricies sit amet vitae sem. Ut blandit dapibus aliquam. Duis imperdiet, odio sit amet tempus bibendum, purus libero mattis risus, in aliquam felis dolor in urna.
+          </p>
+          <h2>Heading 3</h2>
+          <p>
+      Sed quis gravida nisi. Aenean dignissim nunc nec luctus pulvinar. Etiam luctus nisl arcu, ac hendrerit sapien sollicitudin sit amet. Integer viverra, ligula vitae iaculis vulputate, lacus quam mollis leo, sit amet vehicula enim est nec tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla a dui suscipit, aliquam massa eget, feugiat sem. Nam rutrum dui in arcu pulvinar mollis. Curabitur sed lectus eget ante tincidunt consectetur sit amet at tortor.
+          </p>
+          <h3>Subheading 3.1</h3>
+          <p>
+      Pellentesque vel enim ege purus cursus commodo. Morbi eget iaculis justo, vitae facilisis justo. Sed cursus, orci vel sodales tincidunt, odio neque gravida lectus, sed ullamcorper turpis ante sit amet arcu. Proin sagittis diam eget nulla consectetur imperdiet. Aliquam lorem massa, feugiat vitae ante a, lobortis pellentesque eros. Sed quis iaculis tellus, sed molestie neque. Quisque lobortis nisi diam, in congue ante tempor nec. Vivamus adipiscing metus at tincidunt cursus. Cras scelerisque sit amet magna in vulputate. Vestibulum luctus venenatis dui, sed consectetur nisi pretium a. Mauris tristique, libero a vulputate porta, ligula turpis convallis dolor, nec rutrum quam mauris vitae dui. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris convallis pellentesque euismod. Phasellus convallis sem dapibus, placerat lorem non, imperdiet est. Integer euismod, augue sit amet pellentesque vestibulum, sapien nibh venenatis tortor, non facilisis arcu elit eget risus.
+          </p>
+          <h2>Heading 4</h2>
+          <p>
+      Nunc posuere tempor dui, sed vestibulum mauris accumsan ac. Nulla facilisi. Vestibulum varius vestibulum justo ac eleifend. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus sollicitudin magna purus, blandit posuere nisl porta eget. Pellentesque hendrerit tellus id neque consectetur tristique. Mauris eget pulvinar turpis. Vestibulum at tortor dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis mi tellus, rhoncus id arcu et, gravida rhoncus leo. Sed semper a sem id facilisis. Phasellus in sem vitae nibh sollicitudin adipiscing. Donec vel gravida urna, sit amet accumsan dolor. Integer ullamcorper blandit nunc. Donec hendrerit velit elit, sed faucibus mauris commodo eget. Nunc in purus molestie, cursus massa id, hendrerit magna.
+          </p>
+          <h2>Heading 5</h2>
+          <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget neque libero. Aenean dolor turpis, viverra placerat tristique eget, venenatis quis sapien. Suspendisse ut sem vel ligula fringilla aliquam eu ut sem. Maecenas aliquet nisl at dolor auctor, sit amet convallis velit tempor. In ut nulla non lorem placerat laoreet eu vitae ligula. Pellentesque eleifend, quam in feugiat vestibulum, libero tellus faucibus est, vitae porta nibh ipsum eu tellus. Fusce auctor eros nec odio euismod consequat. Donec dictum sodales est, eget vestibulum massa gravida sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed ut purus at augue porttitor consectetur. Curabitur in lorem id lorem fringilla sodales quis sed dolor. Curabitur a blandit nunc.
+          </p>
+          <h3>Subheading 5.1</h3>
+          <p>
+      Pellentesque vel enim ege purus cursus commodo. Morbi eget iaculis justo, vitae facilisis justo. Sed cursus, orci vel sodales tincidunt, odio neque gravida lectus, sed ullamcorper turpis ante sit amet arcu. Proin sagittis diam eget nulla consectetur imperdiet. Aliquam lorem massa, feugiat vitae ante a, lobortis pellentesque eros. Sed quis iaculis tellus, sed molestie neque. Quisque lobortis nisi diam, in congue ante tempor nec. Vivamus adipiscing metus at tincidunt cursus. Cras scelerisque sit amet magna in vulputate. Vestibulum luctus venenatis dui, sed consectetur nisi pretium a. Mauris tristique, libero a vulputate porta, ligula turpis convallis dolor, nec rutrum quam mauris vitae dui. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris convallis pellentesque euismod. Phasellus convallis sem dapibus, placerat lorem non, imperdiet est. Integer euismod, augue sit amet pellentesque vestibulum, sapien nibh venenatis tortor, non facilisis arcu elit eget risus.
+          </p>
+          <h3>Subheading 5.2</h3>
+          <p>
+      Nulla tempor metus nec felis hendrerit, id imperdiet odio accumsan. Sed mollis erat a venenatis mattis. Fusce molestie consectetur tortor posuere consequat. Integer mattis est dolor, dignissim malesuada mauris tempus sit amet. Integer at nunc ut leo lacinia ultricies sit amet vitae sem. Ut blandit dapibus aliquam. Duis imperdiet, odio sit amet tempus bibendum, purus libero mattis risus, in aliquam felis dolor in urna.
+          </p>
+      </article>
+      <nav id="tocible">
+      </nav>
+  </div>
+  
+  <footer>
+    <menu>
+        <ul>
+            <li><a class="usage">Basic Usage</a></li>
+            <li><a class="options">Additional Options</a></li>
+        </ul>
+    </menu>
+    <div id="details">
+        <div id="usage">
+            <p>Include the latest jQuery library together with <code>tocible.css</code> and <code>jquery.tocible.js</code> in your document's <code>&lt;head&gt;</code> and call <code>.tocible()</code></p>
+            <div class="html">
+            <p>HTML</p>
+            <pre>
+  <code>
+  &lt;div id="container"&gt;
+      &lt;article&gt;
+          &lt;h2&gt;Heading&lt;/h2&gt;
+          &lt;p&gt;...&lt;/p&gt;
+          &lt;h3&gt;SubHeading&lt;/h3&gt;
+          &lt;p&gt;...&lt;/p&gt;	
+      &lt;/article&gt;
+      &lt;nav&gt;
+      &lt;!-- This will hold the navigation list, 
+      position this element to your liking --&gt;
+      &lt;/nav&gt;
+  &lt;/div&gt;</code>
+            </pre>
+            </div>
+            <div class="script">
+                <p>JavaScript</p>
+                <pre>
+  <code>
+  $('#container').tocible();</code>
+                </pre>
+            </div>
+        </div>
+        
+        <div id="options">
+        <div>
+        <pre>
+  <code>
+  $('#container').tocible({
+      heading: 'h2', //selector, the first level heading
+      subheading: 'h3', //selector, the second level heading
+      navigation: 'nav', //selector, navigation list container
+      title: '', //selector or string, title of the navigation
+      hash: false, //boolean, setting true will enable URL hashing on click
+      offset: 50, //number, top spacing/margin for the navigation
+      speed: 800 //number or string ('slow' & 'fast'), animation speed when anchoring
+      collapsible: true //boolean, auto collapsing sub level heading
+  });
+  </code>
+        </pre>
+        </div>
+        <p id="collapsible-opt">
+        	Set <code>collapsible</code> : 
+        	<label><input type="radio" name="collapsible" value="1" checked/> <code>true</code> </label>
+          or
+        	<label><input type="radio" name="collapsible" value="2" /> <code>false</code> </label>
+        </p>
+        </div>
+    </div>
+  
+  </footer>
+  <script>
+  $(document).ready(function(e) {
+	  //call tocible():
+      $('#section_wrapper').tocible({ navigation:'#tocible', title:'contents', collapsible:true});
+		
+  	  $('header #dl-github').hide();
+      function set(winTop){
+        var $wrapper = $('#section_wrapper'),
+            $footer = $('footer'),
+            winH = $(window).height(),
+            headerH = $('header').height();
+            
+        $wrapper.css({'margin-bottom':winH});
+        $footer.height(winH-headerH).css({'margin-top':-winH});
+        
+        if(winTop + headerH >= $wrapper.offset().top + $wrapper.outerHeight()){
+            $footer.css({'position':'fixed','bottom':0});
+            $('header p').html('A lightweight table of contents navigation menu that animates anchoring');
+            $('header #dl-github').fadeIn(2000);
+            if($('#usage').is(':hidden') && $('#options').is(':hidden')){
+              $('.usage').trigger('click');
+            }
+        }else{
+            $footer.css({'position':'absolute','bottom':'auto'});
+        }
+      
+      }
+      
+      $(window).scroll(function() {
+          set($(this).scrollTop());
+          
+      });
+      
+      $('footer menu a').click(function(e) {
+          e.preventDefault();
+          var id = $(this).attr('class');
+          $('#'+id).fadeIn().siblings().fadeOut();
+          $('footer menu a').removeClass('open');
+          $(this).addClass('open');
+      });
+			
+			$('#collapsible-opt [name="collapsible"]').change(function(e) {
+      	if($(this).val() == 1){
+					$('#section_wrapper').tocible({ navigation:'#tocible', title:'contents', collapsible:true});
+				}else{
+					$('#section_wrapper').tocible({ navigation:'#tocible', title:'contents'});
+				}
+      });
+  
+  });
+  </script>
+</body>
+</html>
