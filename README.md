@@ -45,6 +45,10 @@ $('#container').tocible({
 Tested on modern browsers – Chrome, Firefox, Safari, also IE.
 
 ## Changelog
+- 	v1.1.1 (25 Jan 2014)
+
+	Fix menu left positioning
+
 - 	v1.1.0 (13 Jan 2014)
 
 	Add option `collapsible`, for collapsing subheading list
@@ -54,6 +58,7 @@ Tested on modern browsers – Chrome, Firefox, Safari, also IE.
 - 	v1.0.2 (10 Jan 2014)
 
 	Initial release
+
 
 ## License
 Tocible is under [MIT License](http://opensource.org/licenses/MIT)

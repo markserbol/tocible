@@ -1,5 +1,5 @@
 /*
- * jquery.tocible.js v1.1.0, Tocible
+ * jquery.tocible.js v1.1.1, Tocible
  *
  * Copyright 2014 Mark Serbol.   
  * Use, reproduction, distribution, and modification of this code is subject to the terms and 
@@ -26,15 +26,16 @@
 		var opts = $.extend({}, defaults, options);
 	
 		return this.each(function(){
-			var wrapper = $(this), nav, heading, subheading, left; 
+			var wrapper = $(this), nav, heading, subheading, left, oleft; 
 			
 			nav = wrapper.find(opts.navigation);
 			
 			left = nav.offset().left;
+			oleft = left - wrapper.offset().left;
 			
 			nav.addClass('tocible').html('<ul/>');
 			
-			wrapper.append(nav).css({'position':'relative'});
+			wrapper.css({'position':'relative'});
 			
 			if(opts.title){
 				var title = $(opts.title).length ? $(opts.title).text() : opts.title;
@@ -95,11 +96,11 @@
 				nav.css({'top':opts.offset, 'bottom':'auto', 'left':left});
 				
 				if(wrapTop + wrapper.outerHeight() <= winTop + nav.height() + opts.offset){
-					nav.css({'position':'absolute', 'bottom':0, 'top':'auto'});
+					nav.css({'position':'absolute', 'bottom':0, 'top':'auto', 'left': oleft});
 				}else if(winTop >= wrapTop){
 					nav.css({'position':'fixed', 'bottom':'auto', 'top':opts.offset});
 				}else{
-					nav.css({'position':'absolute'});
+					nav.css({'position':'absolute', 'left':oleft});
 				}		
 			};
 			
