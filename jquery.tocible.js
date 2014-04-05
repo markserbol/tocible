@@ -39,7 +39,7 @@
 			
 			if(opts.title){
 				var title = $(opts.title).length ? $(opts.title).text() : opts.title;
-				var head = $('<div/>', {class:'tocible_header', html:'<span/>'+title });
+				var head = $('<div/>', {'class':'tocible_header', html:'<span/>'+title });
 				
 				head.prependTo(nav).click(function() {
 					$(this).siblings('ul').slideToggle({
@@ -67,7 +67,7 @@
 				}
 				
 				anchor = $('<a/>', {text:title, href:href});				
-				list = $('<li/>', {class:'tocible_'+type});			
+				list = $('<li/>', {'class':'tocible_'+type});			
 				list.append(anchor).appendTo('.tocible > ul');
 							
 				anchor.click(function(e) {
