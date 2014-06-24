@@ -2,211 +2,288 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Tocible by Mark Serbol</title>
+  <title>jQuery Tocible, A lightweight table of contents navigation plugin | by Mark Serbol</title>
   <meta name="viewport" content="initial-scale=1">
-  <meta name="description" content="Tocible, a lightweight table of contents navigation menu" />
+  <meta name="description" content="jQuery Tocible — A Table Of Contents navigation plugin that's lightweight, easy to integrate and works well on responsive design." />
   <meta name="author" content="Mark Serbol" />
   <meta name="designer" content="Mark Serbol" />
-  <meta property="og:title" content="Tocible — a lightweight table of contents navigation menu" />
-  <meta property="og:description" content="Tocible, a lightweight table of contents navigation menu that animates anchoring." />
-  <meta property="og:image" content="http://i.imgur.com/FwqrEl7.png" />
+  <meta property="og:title" content="jQuery Tocible, A lightweight table of contents navigation plugin" />
+  <meta property="og:description" content="jQuery Tocible, A Table Of Contents navigation plugin that's lightweight, easy to integrate and works well on responsive design." />
+  <meta property="og:image" content="http://i.imgur.com/i3WQ9jk.png" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="http://markserbol.github.io/tocible/" />
-  <meta property="og:site_name" content="Tocible by Mark Serbol" />
+  <meta property="og:site_name" content="jQuery Tocible, A lightweight table of contents navigation plugin" />
+  
+  <link href='http://fonts.googleapis.com/css?family=Merriweather:400,700|Oxygen:400,700' rel='stylesheet' type='text/css'>
   
   <style>
   * {
-      margin:0;
-      padding:0;
+		margin:0;
+		padding:0;
   }
   body, html {
-      background:#999EA8;
-      font-family:'Myriad Pro', Arial, Helvetica, sans-serif;
+		background:#999EA8;
+		font-family: 'Oxygen', sans-serif;
   }
-  header {
-      background:#525761;
-      height:250px;
-      width:100%;
-      text-align:center;
-      color:#FFF;
-      font-size:25px;
-      position:fixed;
-      top:0;
-      left:0;
-      text-shadow:0 1px 4px rgba(0, 0, 0, 0.6);
+  .site-header, .bottom-header {
+		background:#525761;   
+		text-align:center;
+		color:#FFF;
+		font-size:25px;
+		padding:100px 20px 80px 20px;        
   }
-  header h1 {
-      font-family:"Courier New", Courier, monospace;
-      margin-top:50px;
+	
+	.bottom-header {
+		position:relative;
+	}
+	
+  .site-header h1, .bottom-header h1 {
+		font-family: 'Merriweather', serif;
+		font-size:70px;
+		text-shadow:0 1px 4px rgba(0, 0, 0, 0.6);     
   }
-  header p {
-      color:#BAC9E7;
+	
+  .site-header p, .bottom-header p {
+		color:#BAC9E7;
+		text-shadow:none;
+		max-width:980px;
+		margin:0 auto;
   }
-  header #dl-github {
-      height:60px;
-	  width:200px;
-	  margin:0 auto;
-	  line-height:60px;
-      padding:0 20px;
-      margin-top:20px;
-      background:#7A8498;
-      border:none;
-      border-radius:6px;
-      font-size:20px;
-      box-shadow:0 0 6px 1px rgba(0, 0, 0, 0.3);
-      cursor:pointer;
-      color:#FFF;
-      text-shadow:0 1px 2px rgba(0, 0, 0, 0.6);
-      display:block;
-	  text-decoration:none;
+	
+	.site-header p > span, .bottom-header p > span {
+		color:#fff;
+	}
+	
+	.scroll-down {
+		padding-top:180px;
+	}
+	
+  .github {     
+	 	max-width:240px;
+	  margin:0 auto;		
+		padding:20px;
+		margin-top:30px;
+		background:#7A8498;
+		border:none;
+		border-radius:6px;
+		font-size:20px;
+		box-shadow:0 0 6px 1px rgba(0, 0, 0, 0.3);
+		cursor:pointer;
+		color:#FFF;
+		text-shadow:0 1px 2px rgba(0, 0, 0, 0.6);
+		display:block;
+		text-decoration:none;
   }
-  header #dl-github:hover {
-      background:#62C8BF;
+	
+  .github:hover {
+  	background:#62C8BF;
   }
-  #section_wrapper {
-      background:#FAFAFA;
-      padding:20px 0;
-      box-shadow:0 0 0 10px rgba(0, 0, 0, 0.2);
-      margin-top:250px;
-      font-size:16px;
-      line-height:26px;
-      position:relative;
-      overflow:auto;
+	
+  .demo-container {
+		background:#FAFAFA;
+		padding:20px 0;
+		box-shadow:0 0 0 10px rgba(0, 0, 0, 0.2);    
+		font-size:16px;
+		line-height:26px;
+		position:relative;
+		overflow:auto;
+		z-index:3;			
   }
-  #section_wrapper article {
-      width:920px;
-      overflow:hidden;
-      margin-left:310px;
+	
+	.demo {
+		max-width:980px;
+		margin:0 auto;
+		position:relative;
+	}
+	
+  .demo article {    
+		overflow:hidden;
+		padding:20px;
+		box-sizing:border-box;
+		margin:0 auto;
+		position:relative;
+		overflow:auto;
+			
   }
-  #section_wrapper h2 {
-      font-size:30px;
-      font-weight:normal;
-      margin-top:12px;
-      margin:28px 0 10px 0;
+  .demo h2 {
+		font-size:30px;
+		font-weight:normal;
+		margin-top:12px;
+		margin:28px 0 10px 0;
   }
-  #section_wrapper h3 {
-      font-size:22px;
-      margin:15px 0 10px 0;
-      font-weight:normal;
+	
+  .demo h3 {
+		font-size:22px;
+		margin:15px 0 10px 0;
+		font-weight:normal;
   }
-  #tocible {
-      background:#CCC;
-      position:absolute;
-      left:120px;	
-			width:170px;
+	
+  .ref {
+		float:right;	
+		width:150px;	
+		height:200px;				
   }
+	
   footer {
-      height:600px;
-      width:100%;
-      background:#999EA8;
-      position:absolute;
-      color:#FFF;
-      font-size:18px;
-      box-shadow:0px 1px rgba(255, 255, 255, 0.1) inset;
-      left:0;
-      z-index:2;
+		height:600px;
+		
+		background:#999EA8;
+		color:#FFF;
+		font-size:18px;
+		box-shadow:0px 1px rgba(255, 255, 255, 0.1) inset;
+		left:0;
+		z-index:2;
   }
-  footer #details {
-      overflow:auto;
+	
+  #details {
+  	overflow:auto;
+		padding:50px 0;
   }
-  #details > div {
-      position:absolute;
-      display:none;
-      font-family:'Calibri', sans-serif;
-      color:#FFF;
-      font-weight:normal;
-      width:100%;
-      text-align:center;
+	
+  #details > div {      
+		color:#FFF;
+		font-weight:normal;
+		max-width:980px;
+		text-align:center;
+		margin:0 auto;
+		box-sizing:border-box;
+		padding:30px 15px 50px 15px;
   }
-  #details code {
-      font-size:16px;
-      font-family:"Courier New",monospace, serif;
-      background:rgba(54, 59, 64, 0.6);
-      padding:1px 12px;
-      border-radius:4px;
+
+  footer h3 {
+		height:50px;
+		text-align:center;
+		line-height:50px;
+		font-size:24px;
+		color:#363B40;
+		text-decoration:underline;		
   }
-  #details pre {
-      background:rgba(54, 59, 64, 0.6);
-      padding:0 20px;
-      border-radius:4px;
-      text-align:left;
-  }
-  #details pre code {
-      background:none;
-  }
-  #usage > p {
-      margin-top:10px;
-      padding:0 100px;
-  }
-  #usage div {
-      display:inline-block;
-      vertical-align:top;
-  }
-  #usage .html {
-      margin:10px;
-      width:550px;
-  }
-  #usage .html p {
-      margin:5px;
-  }
-  #usage .script {
-      margin:10px;
-      width:350px;
-  }
-  #usage .script p {
-      margin:5px;
-  }
-  #options div {
-      width:1150px;
-      margin:20px auto;
-      text-align:left;
-  }
-  footer menu {
-      height:50px;
-      background:#363B40;
-      width:100%;
-      text-align:center;
-      line-height:50px;
-      color:#8B9198;
-      font-size:20px;
-  }
-  footer menu li {
-      display:inline;
-      padding:0 15px;
-  }
-  footer menu li a {
-      text-decoration:none;
-      color:inherit;
-      cursor:pointer;
-  }
-  footer menu li a:hover {
-      color:#BCBFC2;
-  }
-  footer menu li a.open {
-      color:#FFF;
-      border-bottom:2px solid #FFF;
-  }
-  label:hover {
-      cursor:pointer;
-      text-decoration:underline;
-  }
+	
+	footer h4 {
+		margin:30px 0 5px 0;
+	}
   
+	.footnote {
+		background:#363B40;		
+		color:#BCBFC2;
+		font-size:14px;
+		padding:20px 0;
+		text-align:center;
+		
+	}
+	
+	.footnote p {
+		max-width:940px;
+		padding:5px 20px;
+		margin:0 auto;
+		
+	}
+  
+	.footnote a {
+	
+		color:#62C8BF;
+		text-decoration:none;
+		
+	}
+	
+	code, pre { 
+		font-family:"Courier New",monospace;
+		background: #4F565E;
+		padding:0 8px;
+		border-radius:4px;
+		text-align:left;
+		font-style:italic;
+		font-size:16px;
+	}
+	
+	pre {
+		white-space:pre;
+		margin:8px 0;
+		padding:10px 15px;
+		display:inline-block;
+	}
+	
+	pre .default {	
+		color:#62C8BF;
+	}
+	
+	pre .definition {
+		color:#80A5CA;
+	}
+	
+	pre .text {
+		color:#D779A8;
+	}
+	
+	@media only screen and (max-width: 630px) {
+		body, .demo-container {
+			font-size:14px;
+		}
+		
+		.site-header, .bottom-header {
+			font-size:18px;
+			padding:50px 15px 30px 15px; 
+		}
+		
+		.site-header h1, .bottom-header h1 {
+			font-size:50px;
+		}
+		
+		.scroll-down {
+			padding-top:80px;
+		}
+		
+		.github {     
+			font-size:18px;
+		}
+		
+		footer {
+			font-size:14px;
+		}
+		
+		footer h3 {
+			font-size:18px;
+		}
+		
+		#details > div {
+			padding:20px 15px 30px 15px;
+		}
+		
+		code, pre { 
+			font-size:14px;
+		}
+		
+		pre {
+			padding:5px 10px;
+		}
+		
+	}
+	
+	
   </style>
   
   <link rel="stylesheet" href="tocible.css" />
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="jquery.tocible.js"></script>
+  
 </head>
 
 <body>
-  <header>
-      <a href="https://github.com/markserbol/tocible/fork"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+  <header class="site-header">
+     
       <h1>jQuery Tocible</h1>
-      <p>A lightweight table of contents navigation... Scroll down to see it in action!</p>
-      <a id="dl-github" href="https://github.com/markserbol/tocible">Download on GitHub</a>
+      <p>A <span>T</span>able <span>O</span>f <span>C</span>ontents navigation plugin... </p>
+      <div class="scroll-down">Scroll down to see it in action! <br>&darr;</div>
+      
   </header>
   
-  <div id="section_wrapper">
+  <div class="demo-container">
+  	<div class="demo">
+    	
+      <div class="ref">
+      </div>
+      
       <article>
           <h2>Heading 1</h2>
           <p>
@@ -260,124 +337,128 @@
           <p>
       Nulla tempor metus nec felis hendrerit, id imperdiet odio accumsan. Sed mollis erat a venenatis mattis. Fusce molestie consectetur tortor posuere consequat. Integer mattis est dolor, dignissim malesuada mauris tempus sit amet. Integer at nunc ut leo lacinia ultricies sit amet vitae sem. Ut blandit dapibus aliquam. Duis imperdiet, odio sit amet tempus bibendum, purus libero mattis risus, in aliquam felis dolor in urna.
           </p>
+          
       </article>
-      <nav id="tocible">
-      </nav>
+      
+  	</div>    
   </div>
   
   <footer>
-    <menu>
-        <ul>
-            <li><a class="usage">Basic Usage</a></li>
-            <li><a class="options">Additional Options</a></li>
-        </ul>
-    </menu>
-    <div id="details">
-        <div id="usage">
-            <p>Include the latest jQuery library together with <code>tocible.css</code> and <code>jquery.tocible.js</code> in your document's <code>&lt;head&gt;</code> and call <code>.tocible()</code></p>
-            <div class="html">
-            <p>HTML</p>
-            <pre>
-  <code>
-  &lt;div id="container"&gt;
+  	<div class="bottom-header">
+  	
+      <h1>jQuery Tocible</h1>
+      <p>A <span>T</span>able <span>O</span>f <span>C</span>ontents navigation plugin that's <span>lightweight</span>, <span>easy to integrate</span> and works well on <span>responsive design</span>.</p>
+      
+      <a class="github" href="https://github.com/markserbol/tocible">Download, Star and Fork on GitHub</a>
+    </div>
+    
+   
+		<div id="details">
+    	<h3>Basic Usage</h3>
+      <div id="usage">
+        	<p>Include the latest jQuery library together with <code>jquery.tocible.css</code> and <code>jquery.tocible.js</code> in your document's <code>&lt;head&gt;</code> and call <code>$(selector).tocible()</code>.</p>
+            
+        <h4>HTML</h4>
+        <pre>
+<code>
+  &lt;div id="contents"&gt;
+      
+      &lt;div class="ref"&gt;
+      <span class="definition">&lt;!-- 
+        This element will be the reference 
+        for the navigation list positioning, 
+        especially on RWD, so position well 
+        to your liking. 
+      --&gt;</span>
+      &lt;/div&gt;
+  
       &lt;article&gt;
-          &lt;h2&gt;Heading&lt;/h2&gt;
-          &lt;p&gt;...&lt;/p&gt;
-          &lt;h3&gt;SubHeading&lt;/h3&gt;
-          &lt;p&gt;...&lt;/p&gt;	
+          &lt;h2&gt;<span class="text">Heading</span>&lt;/h2&gt;
+          &lt;p&gt;<span class="text">...</span>&lt;/p&gt;
+          &lt;h3&gt;<span class="text">SubHeading</span>&lt;/h3&gt;
+          &lt;p&gt;<span class="text">...</span>&lt;/p&gt;	
       &lt;/article&gt;
-      &lt;nav&gt;
-      &lt;!-- This will hold the navigation list, 
-      position this element to your liking --&gt;
-      &lt;/nav&gt;
+      
   &lt;/div&gt;</code>
-            </pre>
-            </div>
-            <div class="script">
-                <p>JavaScript</p>
-                <pre>
-  <code>
-  $('#container').tocible();</code>
-                </pre>
-            </div>
-        </div>
-        
-        <div id="options">
-        <div>
+        </pre>
+            
+            
+        <h4>JavaScript</h4>
         <pre>
   <code>
-  $('#container').tocible({
-      heading: 'h2', //selector, the first level heading
-      subheading: 'h3', //selector, the second level heading
-      navigation: 'nav', //selector, navigation list container
-      title: '', //selector or string, title of the navigation
-      hash: false, //boolean, setting true will enable URL hashing on click
-      offset: 50, //number, top spacing/margin for the navigation
-      speed: 800 //number or string ('slow' & 'fast'), animation speed when anchoring
-      collapsible: true //boolean, auto collapsing sub level heading
+  $(<span class="default">'#contents'</span>).tocible();</code>
+                </pre>
+            
+			</div>
+   
+      <h3>Additional Options</h3>      
+      <div id="options">
+      
+      
+     
+      <pre>
+  <code>
+  $(<span class="default">'#contents'</span>).tocible({
+  
+      heading: <span class="default">'h2'</span>, 
+      	<span class="definition">//[selector], the first level heading</span>
+        
+      subheading: <span class="default">'h3'</span>, 
+      	<span class="definition">//[selector], the second level heading</span>
+        
+      reference: <span class="default">'.ref'</span>, 
+      	<span class="definition">//[selector], reference element for  
+        //horizontal positioning.
+        //The menu will reflect how this element 
+        //is positioned horizontally especially 
+        //on a responsive designed website.</span>
+        
+      title: <span class="default">'Contents'</span>, 
+      	<span class="definition">//[selector or string], title of the menu</span>
+        
+      hash: <span class="default">false</span>,
+      	<span class="definition">//[boolean], setting true will enable 
+        //URL hashing on click.
+        //The heading 'id' will define the hash value,
+        //for example &lt;h2 id="definition"&gt;&lt;/h2&gt;
+        //will change the URL to 
+        //www.website.com/#definition</span>
+        
+      offsetTop: <span class="default">50</span>, 
+      	<span class="definition">//[number], spacing/margin above the menu</span>
+        
+      speed: <span class="default">800</span>, 
+      	<span class="definition">//[number or string ('slow' & 'fast')], 
+        //duration of the animation when 
+        //jumping to the clicked content</span>
+        
+      collapsible: <span class="default">true</span> 
+      	<span class="definition">//[boolean], enabling true will auto collapse 
+        //sub level heading not being scrolled into</span>
+      
+      maxWidth: <span class="default">150</span> 
+      	<span class="definition">//[number], set max-width of the menu</span>
+        
   });
   </code>
         </pre>
+        
+        
         </div>
-        <p id="collapsible-opt">
-        	Set <code>collapsible</code> : 
-        	<label><input type="radio" name="collapsible" value="1" checked/> <code>true</code> </label>
-          or
-        	<label><input type="radio" name="collapsible" value="2" /> <code>false</code> </label>
-        </p>
-        </div>
+    </div>
+    
+    <div class="footnote">
+      <p>jQuery Tocible v1.2.0</p>
+      <p>Under <a href="http://opensource.org/licenses/MIT">MIT License</a></p>
+      <p>Crafted by <a href="http://www.markserbol.com/">Mark Serbol</a></p>
     </div>
   
   </footer>
+  
   <script>
   $(document).ready(function(e) {
 	  //call tocible():
-      $('#section_wrapper').tocible({ navigation:'#tocible', title:'contents', collapsible:true});
-		
-  	  $('header #dl-github').hide();
-      function set(winTop){
-        var $wrapper = $('#section_wrapper'),
-            $footer = $('footer'),
-            winH = $(window).height(),
-            headerH = $('header').height();
-            
-        $wrapper.css({'margin-bottom':winH});
-        $footer.height(winH-headerH).css({'margin-top':-winH});
-        
-        if(winTop + headerH >= $wrapper.offset().top + $wrapper.outerHeight()){
-            $footer.css({'position':'fixed','bottom':0});
-            $('header p').html('A lightweight table of contents navigation menu that animates anchoring');
-            $('header #dl-github').fadeIn(2000);
-            if($('#usage').is(':hidden') && $('#options').is(':hidden')){
-              $('.usage').trigger('click');
-            }
-        }else{
-            $footer.css({'position':'absolute','bottom':'auto'});
-        }
-      
-      }
-      
-      $(window).scroll(function() {
-          set($(this).scrollTop());
-          
-      });
-      
-      $('footer menu a').click(function(e) {
-          e.preventDefault();
-          var id = $(this).attr('class');
-          $('#'+id).fadeIn().siblings().fadeOut();
-          $('footer menu a').removeClass('open');
-          $(this).addClass('open');
-      });
-			
-			$('#collapsible-opt [name="collapsible"]').change(function(e) {
-      	if($(this).val() == 1){
-					$('#section_wrapper').tocible({ navigation:'#tocible', title:'contents', collapsible:true});
-				}else{
-					$('#section_wrapper').tocible({ navigation:'#tocible', title:'contents'});
-				}
-      });
-  
+  	$('.demo').tocible({ reference:'.ref', title:'Contents'});
   });
   </script>
 </body>
