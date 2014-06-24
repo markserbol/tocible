@@ -19,7 +19,8 @@
 		hash:false,
 		offsetTop:50,
 		speed:800,
-		collapsible:true
+		collapsible:true,
+		maxWidth:150
   };
 		
   $.fn.tocible = function(options){
@@ -36,7 +37,7 @@
 			left = ref.offset().left;
 			
 			nav = $('<div/>', {'class':'tocible', html:'<ul/>'});	
-			nav.appendTo(ref);
+			nav.css({'max-width': opts.maxWidth})
 					
 			wrapper.append(nav).css({'position':'relative'});
 			
@@ -146,7 +147,6 @@
 				});
 			};
 			
-
 			$(window).on('resize scroll',function(e) {
         contain();
 				onScroll();

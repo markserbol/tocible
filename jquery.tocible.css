@@ -17,11 +17,9 @@
 }
 
 .tocible_header {
-	height:35px;
-	line-height:35px;
 	text-transform:uppercase;
 	cursor:pointer;
-	padding:0 40px 0 20px;
+	padding:5px 40px 5px 15px;
 	position:relative;
 	background:#333;
 }
@@ -58,17 +56,20 @@
 }
 
 .tocible li {
-	height:35px;
-	line-height:35px;
 	cursor:pointer;
 	white-space:nowrap;
+	display:block;
 }
 
 .tocible li a {
 	color:inherit;
 	text-decoration:none;
 	display:block;
-	padding:0 20px;
+	padding:5px 15px;
+	text-align:center;
+	word-wrap:break-word;
+	white-space:pre-wrap;
+	white-space: -moz-pre-wrap
 }
 
 .tocible li:hover {
@@ -84,6 +85,5 @@
 }
 
 .tocible .tocible_subheading {
-	padding-left:15px;
 	background:#666;
 }

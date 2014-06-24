@@ -45,6 +45,7 @@ $('#container').tocible({
     offsetTop: 50, //[number], spacing/margin above the menu
     speed: 800, //[number or string ('slow' & 'fast')], duration of the animation when jumping to the clicked content
     collapsible: true //[boolean], enabling true will auto collapse sub level heading not being scrolled into
+    maxWidth: 150 //[number], set max-width of the navigation menu
 });
 ````
 
@@ -56,7 +57,9 @@ Tested on modern browsers – Chrome, Firefox, Safari, also IE.
 
 	Restructure to support Responsive Design
 	
-	Rename plugin options: 'offset' to 'offsetTop', 'navigation' to 'reference'
+	Rename plugin options: `offset` to `offsetTop`, `navigation` to `reference`
+
+	Add option `maxWidth`, set the menu's "max-width" property
 
 - 	v1.1.1 (25 Jan 2014)
 
