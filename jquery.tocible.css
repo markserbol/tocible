@@ -1,33 +1,40 @@
+/*
+ * jquery.tocible.css v1.2.0, jQuery Tocible
+ *
+ * A lightweight table of contents navigation plugin
+ * https://github.com/markserbol/tocible
+ *
+ */
+
 .tocible { 
-	background:#635A52;
+	background:#666;
 	color:#FFF;
-	font-family:'Myriad Pro',Arial, Helvetica, sans-serif;
-	font-size:16px; 
+	font-size:14px; 
 	height:auto;
 	left:auto;
 	right:auto;
 	margin:0;
 }
 
-.tocible .tocible_header {
+.tocible_header {
 	height:35px;
 	line-height:35px;
-	background:#585149;
 	text-transform:uppercase;
 	cursor:pointer;
-	padding:0 20px 0 40px;
+	padding:0 40px 0 20px;
 	position:relative;
+	background:#333;
 }
 
 .tocible_header span {
 	position:absolute;
 	top:15px;
-	left:15px;
+	right:15px;
 	width: 0; 
 	height: 0; 
 	border-left: 6px solid transparent;
 	border-right: 6px solid transparent;
-	border-top: 6px solid #867B6F;
+	border-top: 6px solid #999;
 	font-size: 0;
 	line-height: 0;
 	transition-property: -moz-transform, -webkit-transform, -o-transform, -ms-transform;
@@ -64,22 +71,19 @@
 	padding:0 20px;
 }
 
-.tocible li:active {
-	background:#635A52;
+.tocible li:hover {
+	background:#444;
 }
 
 .tocible li.toc_scrolled {
-	background:#635A52;
+	background:#444;
 }
 
 .tocible .tocible_heading {
-	background:#777366;
+	background:#555;
 }
 
 .tocible .tocible_subheading {
-	background:#938E81;
 	padding-left:15px;
-	
+	background:#666;
 }
-
-
