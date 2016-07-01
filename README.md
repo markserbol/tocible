@@ -43,6 +43,7 @@ $('#container').tocible({
     title: '', //[selector or string], title of the menu
     hash: false, //[boolean], setting true will enable URL hashing on click
     offsetTop: 50, //[number], spacing/margin above the menu
+    offsetTopContent: 150, //[number], spacing/margin above the content
     speed: 800, //[number or string ('slow' & 'fast')], duration of the animation when jumping to the clicked content
     collapsible: true //[boolean], enabling true will auto collapse sub level heading not being scrolled into
     maxWidth: 150 //[number], set max-width of the navigation menu
@@ -50,7 +51,7 @@ $('#container').tocible({
 ````
 
 ## Compatibility
-Tested on modern browsers – Chrome, Firefox, Safari, also IE.
+Tested on modern browsers ï¿½ Chrome, Firefox, Safari, also IE.
 
 ## Changelog
 - 	v1.2.0 (24 Jun 2014)
