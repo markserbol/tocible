@@ -18,6 +18,7 @@
 		title:'',
 		hash:false,
 		offsetTop:50,
+		offsetTopContent:0,
 		speed:800,
 		collapsible:true,
 		maxWidth:150
@@ -89,7 +90,7 @@
 						$(window).scrollTop(winTop);
 					}
 					}		  
-					$('html, body').stop(true).animate({scrollTop:offset.top - 10}, opts.speed);
+					$('html, body').stop(true).animate({scrollTop:offset.top - 10 - opts.offsetTopContent}, opts.speed);
 				});
 				
 			});
@@ -131,7 +132,7 @@
 					target = $('.tocible li').eq(index),
 					winTop = $(window).scrollTop();
 			
-					if(winTop >= elTop - 20){
+					if(winTop >= elTop - 20 - opts.offsetTopContent){
 						target.addClass('toc_scrolled').siblings().removeClass('toc_scrolled');
 						if(opts.collapsible){
 							target.siblings().filter('.tocible_subheading').hide();
